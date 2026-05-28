@@ -13,6 +13,28 @@
     <meta name="twitter:title" content="Les 7 Premiers Pas — Guide Gratuit 3ADK">
     <meta name="twitter:description" content="Le guide pratique pour lancer votre business en ligne. Offert par 3ADK Agency.">
     <link rel="canonical" href="https://aicha77132.github.io/lead-magnet-7-pas/">
+
+    <!-- Google Analytics 4 -->
+    <!-- Remplacer G-XXXXXXXXXX par votre Measurement ID dans GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        var GA4_ID = 'G-XXXXXXXXXX'; // À remplacer par votre vrai ID
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', GA4_ID, { send_page_view: false });
+
+        // Track page view with source
+        gtag('event', 'page_view', {
+            page_title: document.title,
+            page_location: window.location.href,
+            utm_source: new URLSearchParams(window.location.search).get('utm_source') || 'direct'
+        });
+
+        function trackEvent(name, params) {
+            if (typeof gtag !== 'undefined') gtag('event', name, params || {});
+        }
+    </script>
     <style>
         body {
             font-family: Georgia, serif;
@@ -384,42 +406,84 @@
         </div>
 
         <!-- FOOTER -->
-        <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; color: #666;">
-            <p><strong>Maman et Autodidacte</strong><br>
-            Votre partenaire pour réussir en ligne sans sacrifier votre famille</p>
+        <!-- CTA CONVERSION 3ADK AGENCY -->
+        <div style="margin-top: 60px; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-radius: 24px; padding: 48px 40px; text-align: center; border: 1px solid rgba(14,165,233,0.2);">
+            <p style="font-size: 0.7em; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: #38bdf8; margin-bottom: 16px;">Formation IA sur-mesure</p>
+            <h2 style="font-size: 1.8em; font-weight: 900; color: #f1f5f9; margin-bottom: 12px; line-height: 1.2;">
+                Votre équipe est-elle prête<br>pour l'IA en entreprise ?
+            </h2>
+            <p style="color: #94a3b8; margin-bottom: 8px; font-size: 0.95em; line-height: 1.6;">
+                Formation opérationnelle de 2 jours : automatisation des processus, IA générative appliquée au métier.
+                Gains mesurables dès la semaine suivante.
+            </p>
+            <p style="color: #38bdf8; font-weight: 700; font-size: 0.85em; margin-bottom: 32px; letter-spacing: 0.05em;">
+                950 € / jour HT · Prise en charge OPCO possible
+            </p>
+            <a href="https://calendly.com/aichabouterfas/30min"
+               target="_blank"
+               rel="noopener noreferrer"
+               onclick="trackEvent('cta_clicked', {variant: 'lead_magnet_bottom', source: 'lead_magnet_7_pas'})"
+               style="display: inline-block; background: #0ea5e9; color: white; font-weight: 900; font-size: 1.05em; padding: 18px 40px; border-radius: 16px; text-decoration: none; transition: background 0.2s;">
+                Réserver mon Diagnostic Gratuit →
+            </a>
+            <p style="margin-top: 16px; font-size: 0.7em; text-transform: uppercase; letter-spacing: 0.15em; color: #475569; font-weight: 700;">
+                DRH · Responsables pédagogiques · Dirigeants PME/TPE · Sans engagement
+            </p>
+        </div>
+
+        <div style="text-align: center; margin-top: 32px; padding-top: 20px; border-top: 1px solid #eee; color: #666;">
             <p style="font-size: 0.8em;">
-                Ce guide gratuit est un extrait de la formation complète.<br>
-                Pour continuer votre apprentissage, découvrez tous nos modules sur notre site.
+                Guide offert par <strong>3ADK Agency</strong> — Aïcha BELAIDOUNI, Formatrice IA &amp; Automatisation<br>
+                <a href="https://www.linkedin.com/in/aicha-belaidouni"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   onclick="trackEvent('link_clicked', {link: 'linkedin_profile', source: 'lead_magnet_footer'})"
+                   style="color: #0ea5e9;">LinkedIn</a>
+                &nbsp;·&nbsp;
+                <a href="https://3adk-vault-landing.vercel.app"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   onclick="trackEvent('link_clicked', {link: '3adk_vault', source: 'lead_magnet_footer'})"
+                   style="color: #0ea5e9;">3ADK Vault</a>
             </p>
         </div>
     </div>
 
     <script>
-        // Fonction pour imprimer en PDF
-        function printToPDF() {
-            window.print();
-        }
-        
-        // Ajouter un bouton d'impression
+        function printToPDF() { window.print(); }
+
+        // Scroll depth tracking
+        var scrollTracked = { '50': false, '75': false, 'footer': false };
+        window.addEventListener('scroll', function() {
+            var pct = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+            if (!scrollTracked['50'] && pct >= 0.50) {
+                scrollTracked['50'] = true;
+                trackEvent('scroll_depth', { depth: '50%', page: 'lead_magnet_7_pas' });
+            }
+            if (!scrollTracked['75'] && pct >= 0.75) {
+                scrollTracked['75'] = true;
+                trackEvent('scroll_depth', { depth: '75%', page: 'lead_magnet_7_pas' });
+            }
+            if (!scrollTracked['footer'] && pct >= 0.92) {
+                scrollTracked['footer'] = true;
+                trackEvent('page_scrolled_to_footer', { page: 'lead_magnet_7_pas' });
+            }
+        }, { passive: true });
+
         window.onload = function() {
-            const button = document.createElement('button');
+            // Sticky PDF button
+            var button = document.createElement('button');
             button.textContent = '📄 Télécharger en PDF';
-            button.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: #667eea;
-                color: white;
-                border: none;
-                padding: 15px 25px;
-                border-radius: 25px;
-                cursor: pointer;
-                font-weight: bold;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-                z-index: 1000;
-            `;
-            button.onclick = printToPDF;
+            button.style.cssText = 'position:fixed;top:20px;right:20px;background:#667eea;color:white;border:none;padding:12px 20px;border-radius:20px;cursor:pointer;font-weight:bold;box-shadow:0 5px 15px rgba(0,0,0,0.2);z-index:1000;font-size:0.85em;';
+            button.onclick = function() {
+                trackEvent('cta_clicked', { variant: 'pdf_download', source: 'lead_magnet_7_pas' });
+                printToPDF();
+            };
             document.body.appendChild(button);
+
+            // Track time on page
+            setTimeout(function() { trackEvent('engaged_30s', { page: 'lead_magnet_7_pas' }); }, 30000);
+            setTimeout(function() { trackEvent('engaged_2min', { page: 'lead_magnet_7_pas' }); }, 120000);
         };
     </script>
 </body>
